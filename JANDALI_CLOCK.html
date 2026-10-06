@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05080d">
+<title>JANDALI 3D TALKING CLOCK</title>
+<style>
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;background:#05080d;color:#fff;font-family:Arial,Tahoma,sans-serif}
+body{min-height:100vh;display:flex;justify-content:center;align-items:center;overflow-x:hidden}
+.app{width:min(100%,520px);min-height:100vh;padding:18px 16px 26px;text-align:center;background:
+radial-gradient(circle at 50% 32%,#15324a 0,#08131e 28%,#030609 66%,#000 100%)}
+.brand{font-size:clamp(30px,9vw,48px);font-weight:900;letter-spacing:2px;margin:3px 0 0;
+background:linear-gradient(#fff,#82d9ff 48%,#1b83ca);-webkit-background-clip:text;color:transparent;
+text-shadow:0 4px 25px #009dff55}
+.sub{font-size:14px;letter-spacing:3px;color:#8bdcff;margin:4px 0 12px}
+.clock{position:relative;width:min(86vw,400px);aspect-ratio:1;margin:8px auto 13px;border-radius:50%;
+background:radial-gradient(circle at 36% 30%,#183852 0 4%,#07131e 33%,#010306 68%);
+border:10px solid #9ba7ae;box-shadow:inset 0 0 0 4px #1e252a,inset 0 0 45px #009dff55,
+0 0 0 3px #202c34,0 18px 45px #000,0 0 28px #00aaff55}
+.clock:before{content:"";position:absolute;inset:10px;border-radius:50%;border:2px solid #5ad7ff55;box-shadow:inset 0 0 30px #000}
+.num{position:absolute;left:50%;top:50%;width:42px;margin-left:-21px;margin-top:-18px;
+transform:rotate(calc(var(--i)*30deg)) translateY(calc(-1 * min(35vw,150px))) rotate(calc(var(--i)*-30deg));
+font-weight:900;font-size:clamp(21px,6vw,30px);color:#fff;text-shadow:0 0 10px #33c7ff}
+.small{display:block;font-size:10px;color:#64d7ff;margin-top:-2px}
+.hand{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;border-radius:10px;z-index:4}
+.hour{width:8px;height:25%;margin-left:-4px;background:linear-gradient(90deg,#777,#fff,#777);box-shadow:0 0 8px #fff8}
+.minute{width:6px;height:34%;margin-left:-3px;background:linear-gradient(90deg,#777,#eafaff,#777);box-shadow:0 0 8px #7de1ff}
+.second{width:2px;height:38%;margin-left:-1px;background:#ff3b30;box-shadow:0 0 7px #ff3b30}
+.pin{position:absolute;z-index:7;left:50%;top:50%;width:20px;height:20px;margin:-10px;border-radius:50%;
+background:radial-gradient(circle at 35% 30%,#fff,#5dd4ff 35%,#064b78 70%);box-shadow:0 0 14px #39c9ff}
+.digital{font-size:clamp(36px,11vw,58px);font-weight:900;direction:ltr;letter-spacing:2px;
+text-shadow:0 0 18px #24bfff;margin-top:3px}
+.date{color:#b9d9e8;font-size:16px;margin:2px 0 13px}
+.speak{width:100%;border:1px solid #61d9ff;border-radius:18px;padding:17px 10px;font-size:22px;font-weight:900;
+color:#fff;background:linear-gradient(180deg,#158ed2,#07517e);box-shadow:0 8px 24px #008ed955, inset 0 1px #fff5}
+.speak:active{transform:scale(.98)}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:11px}
+button.opt{padding:12px;border-radius:13px;border:1px solid #546875;background:#101b23;color:#fff;font-size:17px;font-weight:bold}
+button.opt.active{border-color:#61d9ff;background:#123a50;box-shadow:0 0 12px #00b7ff55}
+.themes{display:flex;gap:7px;justify-content:center;margin:11px 0;flex-wrap:wrap}
+.theme{border:1px solid #60727d;background:#111b21;color:white;border-radius:999px;padding:8px 13px}
+.credit{font-size:13px;color:#8da4af;margin-top:9px}.credit b{color:#fff}
+.gold .clock{border-color:#d9aa42;box-shadow:inset 0 0 40px #d79a2744,0 18px 45px #000,0 0 30px #e5a82b55}
+.gold .brand{background:linear-gradient(#fff4bd,#e0aa39);-webkit-background-clip:text;color:transparent}
+.silver .clock{border-color:#dce4e8}.black .clock{border-color:#303941}
+.luxury .clock{border-color:#d5a93f;background:radial-gradient(circle at 35% 28%,#3d2410,#100b08 42%,#020202 75%)}
+</style>
+</head>
+<body>
+<main class="app silver" id="app">
+  <div class="brand">JANDALI</div><div class="sub">3D TALKING CLOCK</div>
+  <div class="clock" id="clock">
+    <div class="num" style="--i:0">12<span class="small">24</span></div>
+    <div class="num" style="--i:1">1<span class="small">13</span></div>
+    <div class="num" style="--i:2">2<span class="small">14</span></div>
+    <div class="num" style="--i:3">3<span class="small">15</span></div>
+    <div class="num" style="--i:4">4<span class="small">16</span></div>
+    <div class="num" style="--i:5">5<span class="small">17</span></div>
+    <div class="num" style="--i:6">6<span class="small">18</span></div>
+    <div class="num" style="--i:7">7<span class="small">19</span></div>
+    <div class="num" style="--i:8">8<span class="small">20</span></div>
+    <div class="num" style="--i:9">9<span class="small">21</span></div>
+    <div class="num" style="--i:10">10<span class="small">22</span></div>
+    <div class="num" style="--i:11">11<span class="small">23</span></div>
+    <div class="hand hour" id="h"></div><div class="hand minute" id="m"></div><div class="hand second" id="s"></div><div class="pin"></div>
+  </div>
+  <div class="digital" id="digital">--:--:--</div><div class="date" id="date"></div>
+  <button class="speak" id="speak">🔊 اضغط هنا لسماع الوقت</button>
+  <div class="controls"><button class="opt active" id="b24">24H</button><button class="opt" id="b12">12H</button></div>
+  <div class="themes"><button class="theme" data-t="gold">ذهبي</button><button class="theme" data-t="silver">فضي</button><button class="theme" data-t="black">أسود</button><button class="theme" data-t="luxury">فاخر</button></div>
+  <div class="credit">Designed by <b>Hicham Jandali</b></div>
+</main>
+<script>
+let mode24=true;
+const H=document.getElementById('h'),M=document.getElementById('m'),S=document.getElementById('s'),D=document.getElementById('digital'),DATE=document.getElementById('date');
+function tick(){
+ const n=new Date(), sec=n.getSeconds()+n.getMilliseconds()/1000, min=n.getMinutes()+sec/60, hr=(n.getHours()%12)+min/60;
+ H.style.transform=`rotate(${hr*30}deg)`; M.style.transform=`rotate(${min*6}deg)`; S.style.transform=`rotate(${sec*6}deg)`;
+ let hh=mode24?n.getHours():(n.getHours()%12||12);
+ D.textContent=String(hh).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');
+ DATE.textContent=n.toLocaleDateString('ar',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+ requestAnimationFrame(tick);
+}
+tick();
+function setMode(v){mode24=v;document.getElementById('b24').classList.toggle('active',v);document.getElementById('b12').classList.toggle('active',!v)}
+b24.onclick=()=>setMode(true); b12.onclick=()=>setMode(false);
+document.querySelectorAll('.theme').forEach(x=>x.onclick=()=>{document.getElementById('app').className='app '+x.dataset.t});
+function speakTime(){
+ const n=new Date(), h24=n.getHours(), m=n.getMinutes();
+ const h=mode24?h24:(h24%12||12);
+ const txt=m===0 ? `الساعة الآن ${h} تماماً` : `الساعة الآن ${h} و ${m} دقيقة`;
+ if(!window.speechSynthesis || !window.SpeechSynthesisUtterance){
+   alert("النطق غير متاح عند فتح الملف محلياً في هذا المتصفح. شغّل الملف من موقع HTTPS لتفعيل الصوت.");
+   return;
+ }
+ const run=()=>{
+   speechSynthesis.cancel();
+   const u=new SpeechSynthesisUtterance(txt);
+   const voices=speechSynthesis.getVoices();
+   const ar=voices.find(v=>/^ar/i.test(v.lang)) || voices.find(v=>/Arabic/i.test(v.name));
+   if(ar) u.voice=ar;
+   u.lang=ar?.lang || 'ar-SA';
+   u.rate=0.82; u.pitch=1; u.volume=1;
+   u.onerror=()=>alert("الهاتف منع النطق من الملف المحلي. يلزم فتح الساعة من رابط HTTPS لتعمل ميزة الصوت.");
+   speechSynthesis.speak(u);
+ };
+ const voices=speechSynthesis.getVoices();
+ if(voices.length) run();
+ else {
+   let done=false;
+   speechSynthesis.onvoiceschanged=()=>{if(!done){done=true;run();}};
+   setTimeout(()=>{if(!done){done=true;run();}},700);
+ }
+}
+document.getElementById('speak').onclick=speakTime;
+document.getElementById('clock').onclick=speakTime;
+</script>
+</body></html>
